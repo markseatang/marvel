@@ -6,7 +6,8 @@ JC = javac
 
 CLASSES = \
         MarvelProxy.java \
-        MarvelHandler.java 
+        MarvelHandler.java \
+	MarvelThread.java
 
 default: classes
 
