@@ -4,8 +4,9 @@ Data provided by Marvel.  2017 MARVEL
 
 This proxy allows multiple requests to the marvel API for details about comics by their comic ID at once.
 Usually the Marvel API doesn't allow for multiple accesses at once, so this proxy helps with that.
-Currently this program is single threaded and has caching.
-The output is just whatever .json is produced from the marvel api call.
+This program is multithreaded and has caching. It combines the outputs from the Marvel API into a 
+single json output, where each of the results is an element in an array. In other words, this 
+successfully handles a list of comic ID numbers and outputs the results as an array.
 
 ### Compiling:
 Use the makefile
