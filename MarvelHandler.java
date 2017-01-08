@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.ArrayList;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
@@ -12,7 +13,6 @@ import java.net.URL;
 
 public class MarvelHandler implements HttpHandler {
    private HashMap<Integer, String> cache;
-
    public MarvelHandler () {
       cache = new HashMap<Integer, String>();
    }    
@@ -21,20 +21,31 @@ public class MarvelHandler implements HttpHandler {
    public void handle(HttpExchange t) throws IOException {
       String query = t.getRequestURI().getQuery();
       System.out.println("Request query: "  + query);
-      Integer q = 2;
-      String response;
-      if (cache.containsKey(q)) {
-         response = cache.get(q); // retrieve value from the map if it exists already
-         System.out.println("Served a cached request for id no. " + q);
-      } else {
-         response = getHTML(q); // else do a HTTP request from marvel api and store it
-         cache.put(q, response);
-         System.out.println("Requested from Marvel API for id no. " + q);
+      ArrayList<String> responseQueue = new ArrayList<String>();
+      ArrayList<Integer> queue = new ArrayList<Integer>();
+      queue.add(2);
+      queue.add(3);
+      queue.add(4);
+      queue.add(5);
+      
+      for (Integer q : queue) {
+         String response;
+         if (cache.containsKey(q)) {
+            response = cache.get(q); // retrieve value from the map if it exists already
+            System.out.println("Served a cached request for id no. " + q);
+         } else {
+            response = getHTML(q); // else do a HTTP request from marvel api and store it
+            cache.put(q, response);
+            System.out.println("Requested from Marvel API for id no. " + q);
+         }
+         responseQueue.add(response);
       }
 
       t.sendResponseHeaders(200, 0); // 2nd arg length set to 0 to allow arbitrary length resp.
       OutputStream os = t.getResponseBody();
-      os.write(response.getBytes());
+      for (String response : responseQueue) {
+         os.write(response.getBytes());
+      }
       os.close();
    }
    /*
