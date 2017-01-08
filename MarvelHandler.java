@@ -21,12 +21,20 @@ public class MarvelHandler implements HttpHandler {
    public void handle(HttpExchange t) throws IOException {
       String query = t.getRequestURI().getQuery();
       System.out.println("Request query: "  + query);
-      ArrayList<String> responseQueue = new ArrayList<String>();
+      
+      String[] split = query.split("=");
+      String argString = split[1];
+      String[] args = argString.split(",");
+
       ArrayList<Integer> queue = new ArrayList<Integer>();
-      queue.add(2);
-      queue.add(3);
-      queue.add(4);
-      queue.add(5);
+
+      for (String arg : args) {
+         Integer id = Integer.valueOf(arg);
+         System.out.println(id);
+         queue.add(id);
+      }
+
+      ArrayList<String> responseQueue = new ArrayList<String>();
       
       for (Integer q : queue) {
          String response;
