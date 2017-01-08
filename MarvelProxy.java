@@ -17,7 +17,7 @@ public class MarvelProxy {
    // Bootstrap function that sets up and runs the server
    public void run() {
 
-        server.createContext("/test", new MarvelHandler());
+        server.createContext("/marvelous", new MarvelHandler());
       
         server.setExecutor(null); // creates a default executor
         server.start();

@@ -30,7 +30,6 @@ public class MarvelHandler implements HttpHandler {
 
       for (String arg : args) {
          Integer id = Integer.valueOf(arg);
-         System.out.println(id);
          queue.add(id);
       }
 

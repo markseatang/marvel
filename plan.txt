@@ -1,0 +1,35 @@
+CRC
+
+System
+Contains main, HttpServer, HttpHandler, Http
+
+
+Use case:
+Server is launched
+HTTP request containing many elements is received from the browser
+Server queries marvel, receives data
+Server outputs data to browser
+
+Enunciated use case:
+Server is launched
+HttpServer is instantiated.
+HttpContext is instantiated including a HttpHandler and a path string
+When a http request comes through, something like /test/arg1,arg2,arg3/,
+
+httpExchange.getRequestURI().getQuery()
+
+http://server/action?id=a&id=b
+?id[]=5&id[]=3 
+
+Supposing that http context allows me to fetch the path and parse it,
+we parse it and get a list of comicIds.
+For each comicId, we do a http request and get the 
+
+
+
+DONE turn the http get request into a function which takes an int as a parameter
+wrap that function in a function which takes a list of ints (single threaded server)
+figure out how to get the http parameters
+
+email scott kable
+email john stride
